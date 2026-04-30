@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZFFI — Zimbabwe Future Foundation International</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C4973A;
+    --gold-light: #E8C97A;
+    --gold-pale: #F7EDD8;
+    --green-deep: #1A3A2A;
+    --green-mid: #2D5A3E;
+    --green-bright: #4A8F63;
+    --cream: #FAF7F2;
+    --text-dark: #1C1C1A;
+    --text-mid: #4A4A44;
+    --text-light: #8A8A80;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.85rem 4rem;
+    background: rgba(26,58,42,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,151,58,0.2);
+  }
+
+  /* LOGO */
+  .nav-logo-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-img {
+    height: 62px;
+    width: auto;
+    flex-shrink: 0;
+    mix-blend-mode: lighten;
+    filter: brightness(1.15) drop-shadow(0 1px 6px rgba(0,0,0,0.5));
+  }
+
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    border-left: 1px solid rgba(196,151,58,0.35);
+    padding-left: 0.75rem;
+  }
+
+  .nav-logo-text .logo-line {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .nav-logo-text .logo-line:first-child {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.22em;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; }
+
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-donate {
+    background: var(--gold);
+    color: var(--green-deep) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    letter-spacing: 0.1em;
+  }
+
+  .nav-donate:hover { background: var(--gold-light) !important; color: var(--green-deep) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--green-deep);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(196,151,58,0.08) 0%, transparent 60%),
+      radial-gradient(circle at 80% 20%, rgba(74,143,99,0.1) 0%, transparent 50%);
+  }
+
+  .hero-grid-overlay {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(196,151,58,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(196,151,58,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative;
+    padding: 8rem 4rem 4rem;
+    max-width: 800px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--green-deep);
+    padding: 0.9rem 2.2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-outline {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .btn-outline:hover { color: var(--gold-light); }
+  .btn-outline .arrow { font-size: 1.1rem; }
+
+  .hero-stats {
+    position: absolute;
+    right: 4rem;
+    bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: right;
+  }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 0.25rem;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 8rem 4rem;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green-bright);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--green-bright);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--green-deep);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .section-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-bottom: 1.25rem;
+  }
+
+  .founder-card {
+    background: var(--green-deep);
+    border-radius: 4px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .founder-card::before {
+    content: '\201C';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10rem;
+    color: rgba(196,151,58,0.12);
+    position: absolute;
+    top: -1rem;
+    left: 1rem;
+    line-height: 1;
+  }
+
+  .founder-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .founder-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .founder-avatar {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--green-deep);
+  }
+
+  .founder-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .founder-title-text {
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-top: 0.2rem;
+  }
+
+  /* PILLARS */
+  .pillars {
+    background: var(--green-deep);
+    padding: 7rem 4rem;
+  }
+
+  .pillars-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .pillars-header .section-eyebrow {
+    justify-content: center;
+    color: var(--gold);
+  }
+
+  .pillars-header .section-eyebrow::before {
+    background: var(--gold);
+  }
+
+  .pillars-header .section-title {
+    color: var(--white);
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(196,151,58,0.15);
+  }
+
+  .pillar {
+    background: var(--green-deep);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .pillar:hover { background: var(--green-mid); }
+
+  .pillar-icon {
+    width: 48px; height: 48px;
+    border: 1px solid rgba(196,151,58,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .pillar-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--gold-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .pillar-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* PROGRAMS */
+  .programs {
+    padding: 8rem 4rem;
+    background: var(--cream);
+  }
+
+  .programs-header {
+    margin-bottom: 4rem;
+  }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(196,151,58,0.15);
+  }
+
+  .program-card {
+    background: var(--white);
+    padding: 2.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .program-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 1;
+  }
+
+  .program-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: rgba(196,151,58,0.2);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .program-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--green-deep);
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+
+  .program-desc {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--text-mid);
+  }
+
+  .program-tag {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-bright);
+    font-weight: 500;
+  }
+
+  /* IMPACT */
+  .impact {
+    background: var(--gold-pale);
+    padding: 7rem 4rem;
+    text-align: center;
+  }
+
+  .impact-nums {
+    display: flex;
+    justify-content: center;
+    gap: 6rem;
+    margin-top: 4rem;
+  }
+
+  .impact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.5rem;
+    font-weight: 300;
+    color: var(--green-deep);
+    line-height: 1;
+  }
+
+  .impact-unit {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+  }
+
+  .impact-desc {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #111810;
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.35);
+    max-width: 300px;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(196,151,58,0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+  .footer-col h4 {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul li a {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: rgba(255,255,255,0.8); }
+
+  .footer-bottom {
+    background: #0D110C;
+    padding: 1.25rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.25);
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  /* PARTNERS */
+  .partners {
+    background: var(--cream);
+    padding: 7rem 4rem;
+  }
+
+  .partners-header { margin-bottom: 4rem; }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .partner-card {
+    background: var(--white);
+    border: 1px solid rgba(196,151,58,0.15);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .partner-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+  .partner-flag { font-size: 2rem; margin-bottom: 0.75rem; }
+
+  .partner-country {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green-bright);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .partner-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--green-deep);
+    margin-bottom: 0.6rem;
+  }
+
+  .partner-desc {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-mid);
+  }
+
+  .partner-type {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(196,151,58,0.3);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2px;
+  }
+
+  .partners-cta {
+    margin-top: 3rem;
+    padding: 2.5rem;
+    background: var(--green-deep);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .partners-cta-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  .partners-cta-text em { font-style: italic; color: var(--gold-light); }
+
+  /* VOLUNTEER */
+  .volunteer {
+    background: var(--green-deep);
+    padding: 7rem 4rem;
+  }
+
+  .volunteer-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .volunteer .section-eyebrow { color: var(--gold); }
+  .volunteer .section-eyebrow::before { background: var(--gold); }
+  .volunteer .section-title { color: var(--white); }
+
+  .volunteer-body {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 1.5rem;
+  }
+
+  .volunteer-roles {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: rgba(196,151,58,0.15);
+    margin-bottom: 2rem;
+  }
+
+  .role-item {
+    background: var(--green-deep);
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: background 0.2s;
+  }
+
+  .role-item:hover { background: var(--green-mid); }
+
+  .role-icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(196,151,58,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .role-title { font-size: 0.9rem; font-weight: 500; color: var(--white); }
+  .role-subtitle { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.15rem; }
+
+  .volunteer-form {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(196,151,58,0.2);
+    border-radius: 4px;
+    padding: 2.5rem;
+  }
+
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group { margin-bottom: 1rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.88rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .form-group select option { background: var(--green-deep); color: var(--white); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+
+  .form-group textarea { height: 90px; resize: vertical; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* DONATE */
+  .donate {
+    background: var(--green-deep);
+    padding: 7rem 4rem;
+  }
+
+  .donate-header { text-align: center; margin-bottom: 4rem; }
+  .donate-header .section-eyebrow { justify-content: center; color: var(--gold); }
+  .donate-header .section-eyebrow::before { background: var(--gold); }
+  .donate-header .section-title { color: var(--white); }
+  .donate-header p { font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.55); margin-top: 1rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+
+  .donate-methods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .method-group {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(196,151,58,0.15);
+    border-radius: 4px;
+    padding: 1.75rem;
+  }
+
+  .method-group-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(196,151,58,0.15);
+  }
+
+  .payment-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+
+  .pay-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 0.85rem 0.5rem 0.7rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pay-card:hover {
+    background: rgba(255,255,255,0.13);
+    border-color: rgba(196,151,58,0.5);
+    transform: translateY(-2px);
+  }
+
+  .pay-card:hover .pay-name { color: var(--gold-light); }
+
+  .pay-logo {
+    width: 46px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pay-logo svg { width: 100%; height: 100%; }
+
+  .pay-name {
+    font-size: 0.67rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.04em;
+    text-align: center;
+    transition: color 0.2s;
+  }
+
+  .pay-card::after {
+    content: '↗';
+    position: absolute;
+    top: 4px; right: 6px;
+    font-size: 0.58rem;
+    color: rgba(196,151,58,0.35);
+    transition: color 0.2s;
+  }
+
+  .pay-card:hover::after { color: var(--gold); }
+
+  .donate-bank {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(196,151,58,0.2);
+    border-radius: 4px;
+    padding: 2rem 2.5rem;
+  }
+
+  .donate-bank-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    margin-bottom: 1.25rem;
+  }
+
+  .bank-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .bank-cell {
+    background: rgba(255,255,255,0.02);
+    padding: 0.9rem 1.1rem;
+  }
+
+  .bank-cell-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 0.3rem;
+  }
+
+  .bank-cell-value {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .donate-contact {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .donate-contact a { color: var(--gold); text-decoration: none; }
+
+  /* GALLERY */
+  .gallery { background: var(--green-deep); padding: 7rem 4rem; }
+  .gallery-header { text-align: center; margin-bottom: 3.5rem; }
+  .gallery-header .section-eyebrow { justify-content: center; color: var(--gold); }
+  .gallery-header .section-eyebrow::before { background: var(--gold); }
+  .gallery-header .section-title { color: var(--white); }
+
+  .gallery-filter { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .filter-btn {
+    background: transparent; border: 1px solid rgba(196,151,58,0.3);
+    color: rgba(255,255,255,0.55); padding: 0.45rem 1.1rem; font-size: 0.75rem;
+    letter-spacing: 0.12em; text-transform: uppercase; font-family: 'DM Sans', sans-serif;
+    cursor: pointer; border-radius: 2px; transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--green-deep); }
+
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .gallery-item { position: relative; aspect-ratio: 1; overflow: hidden; cursor: pointer; background: var(--green-mid); }
+  .gallery-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .gallery-item:hover img { transform: scale(1.06); }
+
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,58,42,0.88) 0%, transparent 55%);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; align-items: flex-end; padding: 0.85rem;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-caption { font-size: 0.78rem; color: rgba(255,255,255,0.9); line-height: 1.4; }
+  .gallery-cat { display: block; font-size: 0.63rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.2rem; }
+
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(8,18,12,0.97); align-items: center; justify-content: center; flex-direction: column; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 86vw; max-height: 76vh; object-fit: contain; border: 1px solid rgba(196,151,58,0.2); }
+  .lightbox-close {
+    position: fixed; top: 1.25rem; right: 1.75rem;
+    width: 40px; height: 40px; background: rgba(196,151,58,0.12);
+    border: 1px solid rgba(196,151,58,0.3); color: var(--white); font-size: 1.3rem;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%;
+  }
+  .lightbox-nav { display: flex; align-items: center; gap: 1rem; margin-top: 1.25rem; }
+  .lightbox-prev, .lightbox-next {
+    width: 42px; height: 42px; background: rgba(196,151,58,0.1);
+    border: 1px solid rgba(196,151,58,0.25); color: var(--white); font-size: 1.1rem;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    border-radius: 2px; transition: background 0.2s;
+  }
+  .lightbox-prev:hover, .lightbox-next:hover { background: var(--gold); color: var(--green-deep); }
+  .lightbox-counter { font-size: 0.78rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); min-width: 70px; text-align: center; }
+  .lightbox-info { text-align: center; margin-top: 0.75rem; }
+  .lightbox-info .gallery-cat { display: inline; }
+  .lightbox-info .gallery-caption { font-size: 0.85rem; color: rgba(255,255,255,0.65); margin-top: 0.25rem; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; animation-delay: 0.2s; opacity: 0; }
+  .hero-title { animation: fadeUp 0.7s ease both; animation-delay: 0.4s; opacity: 0; }
+  .hero-subtitle { animation: fadeUp 0.7s ease both; animation-delay: 0.55s; opacity: 0; }
+  .hero-cta { animation: fadeUp 0.6s ease both; animation-delay: 0.7s; opacity: 0; }
+  .hero-stats { animation: fadeUp 0.6s ease both; animation-delay: 0.8s; opacity: 0; }
+
+  @media (max-width: 900px) {
+    nav { padding: 0.85rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-logo-text .logo-full { display: none; }.hero-content { padding: 7rem 1.5rem 3rem; }
+    .hero-stats { right: 1.5rem; bottom: 2rem; }
+    .about { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+    .pillars-grid { grid-template-columns: 1fr 1fr; }
+    .programs-grid { grid-template-columns: 1fr; }
+    .impact-nums { flex-direction: column; gap: 3rem; }
+    .pillars, .impact { padding: 5rem 1.5rem; }
+    .programs { padding: 5rem 1.5rem; }
+    .partners-grid { grid-template-columns: 1fr; }
+    .volunteer-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .donate-methods { grid-template-columns: 1fr; }
+    .bank-grid { grid-template-columns: 1fr 1fr; }
+    .partners-cta { flex-direction: column; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+    .partners, .volunteer { padding: 5rem 1.5rem; }
+    .donate { padding: 5rem 1.5rem; }
+    footer { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.5rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; padding: 1rem 1.5rem; }
+    .gallery { padding: 5rem 1rem; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+    .gallery-item.wide { grid-column: span 2; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <!-- ========== LOGO ========== -->
+  <a href="#home" class="nav-logo-link">
+    <img src="logo.jpg" alt="ZFFI Logo" class="nav-logo-img">
+    <div class="nav-logo-text">
+      <span class="logo-line">Zimbabwe</span>
+      <span class="logo-line">Future Foundation</span>
+      <span class="logo-line">International</span>
+    </div>
+  </a>
+
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#programs">Programs</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#partners">Partners</a>
+    <a href="#volunteer">Volunteer</a>
+    <a href="#impact">Impact</a>
+    <a href="#donate" class="nav-donate">Donate</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Est. 2018 · Zimbabwe</div>
+    <h1 class="hero-title">
+      Empowering<br>
+      <em>Zimbabwe's</em><br>
+      Future
+    </h1>
+    <p class="hero-subtitle">
+      Zimbabwe Future Foundation International uplifts vulnerable communities through food security, healthcare, education, and economic empowerment — because every life deserves dignity.
+    </p>
+    <div class="hero-cta">
+      <a href="#donate" class="btn-primary">Support Our Work</a>
+      <a href="#about" class="btn-outline">Our story <span class="arrow">→</span></a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">2018</div>
+      <div class="stat-label">Year Founded</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">4</div>
+      <div class="stat-label">Core Pillars</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">ZW</div>
+      <div class="stat-label">Zimbabwe & Beyond</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div>
+    <div class="section-eyebrow">Who we are</div>
+    <h2 class="section-title">A Foundation Built on <em>Compassion</em></h2>
+    <p class="section-body">
+      Established in 2018, Zimbabwe Future Foundation International (ZFFI) is a community-based organisation with an unwavering commitment to improving the social welfare of vulnerable people across Zimbabwe.
+    </p>
+    <p class="section-body">
+      We believe that sustainable change begins within communities. ZFFI channels the energy of Zimbabwe's youth and the generosity of its partners into programmes that create lasting transformation — from malnutrition relief to scholarship pathways.
+    </p>
+    <p class="section-body">
+      ZFFI welcomes partnerships and support from individuals, organisations, and institutions who share our commitment to building a more equitable Zimbabwe.
+    </p>
+  </div>
+  <div>
+    <div class="founder-card">
+      <p class="founder-quote">
+        "Every child is precious. Every family deserves hope. We exist to make that hope tangible — one community at a time."
+      </p>
+      <div class="founder-info">
+        <div class="founder-avatar">MBM</div>
+        <div>
+          <div class="founder-name">Michael Bolton Mapuranga</div>
+          <div class="founder-title-text">Founder & Executive Director</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars" id="pillars">
+  <div class="pillars-header">
+    <div class="section-eyebrow">What we stand for</div>
+    <h2 class="section-title" style="color:var(--white);">Our Four <em style="color:var(--gold-light);">Pillars</em></h2>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="pillar-icon">🌾</div>
+      <div class="pillar-name">Food Security</div>
+      <p class="pillar-desc">Tackling malnutrition and hunger by providing nutritious meals and food aid to children and families in need.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🏥</div>
+      <div class="pillar-name">Healthcare</div>
+      <p class="pillar-desc">Connecting underserved communities with essential health services, medical supplies, and wellness programmes.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">📚</div>
+      <div class="pillar-name">Education</div>
+      <p class="pillar-desc">Empowering youth through scholarships, school support, and skills development for a knowledge-driven future.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">💼</div>
+      <div class="pillar-name">Economic Empowerment</div>
+      <p class="pillar-desc">Building financial independence through entrepreneurship training, microfinance linkages, and livelihood programmes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="programs-header">
+    <div class="section-eyebrow">Active initiatives</div>
+    <h2 class="section-title">Our <em>Programmes</em></h2>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card">
+      <div class="program-num">01</div>
+      <h3 class="program-name">Kids Social Contribution Project</h3>
+      <p class="program-desc">Every child is precious. This flagship initiative provides nutritional support, helping children recover from malnutrition and build strength for a brighter future.</p>
+      <span class="program-tag">Food · Nutrition · Children</span>
+    </div>
+    <div class="program-card">
+      <div class="program-num">02</div>
+      <h3 class="program-name">Youth Empowerment & Nation Building</h3>
+      <p class="program-desc">Channelling the power of Zimbabwe's youth into constructive leadership, civic engagement, and community development programmes.</p>
+      <span class="program-tag">Youth · Leadership · Community</span>
+    </div>
+    <div class="program-card">
+      <div class="program-num">03</div>
+      <h3 class="program-name">Vulnerable Communities Support</h3>
+      <p class="program-desc">Targeted interventions for marginalised groups including elderly citizens, orphans, and persons living with disabilities across Zimbabwe.</p>
+      <span class="program-tag">Welfare · Inclusion · Support</span>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header">
+    <div class="section-eyebrow">On the ground</div>
+    <h2 class="section-title">Gallery &amp; <em>Events</em></h2>
+  </div>
+  <div class="gallery-filter">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="community">Community Outreach</button>
+    <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+    <button class="filter-btn" data-filter="education">Education</button>
+    <button class="filter-btn" data-filter="partnership">Partnerships</button>
+    <button class="filter-btn" data-filter="team">Our Team</button>
+  </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-item wide" data-cat="community" data-caption="ZFFI outreach at Jonas Primary School, Seke — joyful children and volunteers gathered together">
+      <img src="zffi-img-01.jpg" alt="Children and volunteers at Jonas Primary School outreach">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Community Outreach</span>Jonas Primary School, Seke Rural District</div></div>
+    </div>
+    <div class="gallery-item" data-cat="healthcare" data-caption="ZFFI's founder with a Chinese medical doctor at the Zimbabwe–China Traditional Chinese Medicine Centre">
+      <img src="zffi-img-02.jpg" alt="ZFFI founder with Chinese medical doctor at TCM Centre">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Healthcare Partnership</span>Zimbabwe–China TCM Centre</div></div>
+    </div>
+    <div class="gallery-item" data-cat="education" data-caption="ZFFI representative handing over a school kit to a mother and child — every child deserves the chance to learn">
+      <img src="zffi-img-03.jpg" alt="School kit donation to mother and child">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Education</span>School kit handover to a vulnerable family</div></div>
+    </div>
+    <div class="gallery-item" data-cat="education" data-caption="ZFFI Tuition Support Programme — Jonas Primary School, Seke Rural District. $30 sponsors one child for a full term">
+      <img src="zffi-img-04.jpg" alt="ZFFI Tuition Support Programme flyer">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Education</span>Tuition Support Programme — Jonas Primary School</div></div>
+    </div>
+    <div class="gallery-item" data-cat="partnership" data-caption="ZFFI founder receiving a gift from the Director of the Zimbabwe–China Traditional Chinese Medicine Centre">
+      <img src="zffi-img-05.jpg" alt="Gift exchange at Zimbabwe-China TCM Centre">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Partnership</span>Meeting with Chinese medical leadership</div></div>
+    </div>
+    <div class="gallery-item" data-cat="partnership" data-caption="Discussions between ZFFI and Chinese medical practitioners at the TCM Centre in Harare">
+      <img src="zffi-img-06.jpg" alt="ZFFI meeting with Chinese medical team at TCM Centre">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Partnership</span>Partnership discussions at TCM Centre, Harare</div></div>
+    </div>
+    <div class="gallery-item" data-cat="partnership" data-caption="ZFFI team and Chinese medical delegation in discussion at the Zimbabwe–China TCM Centre">
+      <img src="zffi-img-07.jpg" alt="Full delegation meeting at the Zimbabwe-China TCM Centre">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Partnership</span>Delegation meeting — Zimbabwe–China TCM Centre</div></div>
+    </div>
+    <div class="gallery-item" data-cat="partnership" data-caption="ZFFI founder reviewing plans and documents with Chinese medical doctors">
+      <img src="zffi-img-08.jpg" alt="ZFFI founder reviewing plans with Chinese doctors">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Partnership</span>Planning session with Chinese medical team</div></div>
+    </div>
+    <div class="gallery-item wide" data-cat="partnership" data-caption="ZFFI team and Chinese medical practitioners outside the Zimbabwe–China Traditional Chinese Medicine Center, Harare">
+      <img src="zffi-img-09.jpg" alt="Group photo at Zimbabwe-China Traditional Chinese Medicine Center">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Partnership</span>Zimbabwe–China Traditional Chinese Medicine Center, Harare</div></div>
+    </div>
+    <div class="gallery-item" data-cat="team" data-caption="ZFFI volunteers and team members in uniform — ready to serve communities across Zimbabwe">
+      <img src="zffi-img-10.jpg" alt="ZFFI team members in uniform">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Our Team</span>ZFFI team members — ready to serve</div></div>
+    </div>
+    <div class="gallery-item" data-cat="community" data-caption="ZFFI community outreach at a rural location — a ZFFI volunteer coordinates community members">
+      <img src="zffi-img-12.jpg" alt="ZFFI community outreach with community members">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Community Outreach</span>Rural community outreach, Mashonaland East</div></div>
+    </div>
+    <div class="gallery-item" data-cat="healthcare" data-caption="Medical supplies and herbal remedies being dispensed to community members during a ZFFI–Chinese medical outreach">
+      <img src="zffi-img-13.jpg" alt="Chinese medical doctor dispensing medicine to community member">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Healthcare</span>Medical consultation and dispensing — rural outreach</div></div>
+    </div>
+    <div class="gallery-item" data-cat="healthcare" data-caption="ZFFI and Chinese medical practitioners providing healthcare consultations and distributing medication to rural residents">
+      <img src="zffi-img-14.jpg" alt="Medical team providing consultations at rural outreach">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Healthcare</span>Free medical consultations — rural community</div></div>
+    </div>
+    <div class="gallery-item" data-cat="community" data-caption="A selfie moment capturing the joy and energy of a ZFFI community outreach day in Mashonaland East">
+      <img src="zffi-img-15.jpg" alt="ZFFI outreach selfie with community members">
+      <div class="gallery-overlay"><div class="gallery-caption"><span class="gallery-cat">Community Outreach</span>Community day in Mashonaland East</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose">✕</button>
+  <img src="" alt="" id="lbImg">
+  <div class="lightbox-info">
+    <div class="gallery-cat" id="lbCat"></div>
+    <div class="gallery-caption" id="lbCaption"></div>
+  </div>
+  <div class="lightbox-nav">
+    <button class="lightbox-prev" id="lbPrev">&#8592;</button>
+    <span class="lightbox-counter" id="lbCounter">1 / 14</span>
+    <button class="lightbox-next" id="lbNext">&#8594;</button>
+  </div>
+</div>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="section-eyebrow" style="justify-content:center;">Why it matters</div>
+  <h2 class="section-title">Every Contribution <em>Counts</em></h2>
+  <div class="impact-nums">
+    <div class="impact-item">
+      <div class="impact-number">2018<span class="impact-unit"></span></div>
+      <div class="impact-desc">Founded &amp; growing</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-number">100<span class="impact-unit">+</span></div>
+      <div class="impact-desc">Families reached</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-number">4<span class="impact-unit"></span></div>
+      <div class="impact-desc">Focus areas</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-number">∞<span class="impact-unit"></span></div>
+      <div class="impact-desc">Potential ahead</div>
+    </div>
+  </div>
+</section>
+
+<!-- HEALTHCARE PARTNERS -->
+<section class="partners" id="partners">
+  <div class="partners-header">
+    <div class="section-eyebrow">Collaboration &amp; Partnership</div>
+    <h2 class="section-title">Our Healthcare <em>Partners</em></h2>
+  </div>
+  <div class="partners-grid">
+    <div class="partner-card">
+      <div class="partner-flag">🇨🇳</div>
+      <div class="partner-country">China</div>
+      <div class="partner-name">Chinese Medical Partnership</div>
+      <p class="partner-desc">ZFFI has engaged with Chinese medical practitioners and institutions committed to delivering healthcare outreach to underserved communities in Zimbabwe, extending specialist services and medical supplies to rural areas.</p>
+      <span class="partner-type">Healthcare · Medical Outreach</span>
+    </div>
+    <div class="partner-card">
+      <div class="partner-flag">🇿🇼</div>
+      <div class="partner-country">Zimbabwe</div>
+      <div class="partner-name">University of Zimbabwe Medical Students</div>
+      <p class="partner-desc">Since ZFFI's very first outreach in 2018 in Beatrice, Ward 17, voluntary medical students from the University of Zimbabwe have been vital partners — many of whom are now qualified medical professionals.</p>
+      <span class="partner-type">Healthcare · Education</span>
+    </div>
+    <div class="partner-card">
+      <div class="partner-flag">🌍</div>
+      <div class="partner-country">International</div>
+      <div class="partner-name">Become a Healthcare Partner</div>
+      <p class="partner-desc">ZFFI actively welcomes partnerships with hospitals, clinics, medical NGOs, pharmaceutical companies, and individual healthcare practitioners from across the world to expand access to care in Zimbabwe.</p>
+      <span class="partner-type">Open Partnership</span>
+    </div>
+  </div>
+  <div class="partners-cta">
+    <div class="partners-cta-text">Interested in partnering with <em>ZFFI</em>?<br>Let's build healthier communities together.</div>
+    <a href="mailto:info@zffi.org" class="btn-primary" style="white-space:nowrap;">Contact Us</a>
+  </div>
+</section>
+
+<!-- VOLUNTEER -->
+<section class="volunteer" id="volunteer">
+  <div class="volunteer-inner">
+    <div>
+      <div class="section-eyebrow">Join Our Team</div>
+      <h2 class="section-title">Volunteer With <em>ZFFI</em></h2>
+      <p class="volunteer-body">
+        ZFFI was built on the spirit of volunteerism. From our very first medical outreach — funded by selling eggs — our volunteers have been the backbone of everything we do. Your time and skills can change lives.
+      </p>
+      <p class="volunteer-body">
+        Whether you are a medical professional, educator, communicator, fundraiser, or simply someone with a willing heart, there is a place for you at ZFFI.
+      </p>
+      <div class="volunteer-roles">
+        <div class="role-item">
+          <div class="role-icon">🏥</div>
+          <div class="role-text">
+            <div class="role-title">Medical &amp; Healthcare Volunteers</div>
+            <div class="role-subtitle">Doctors, nurses, pharmacists, counsellors</div>
+          </div>
+        </div>
+        <div class="role-item">
+          <div class="role-icon">📚</div>
+          <div class="role-text">
+            <div class="role-title">Education &amp; Tutoring Volunteers</div>
+            <div class="role-subtitle">Teachers, mentors, skills trainers</div>
+          </div>
+        </div>
+        <div class="role-item">
+          <div class="role-icon">📣</div>
+          <div class="role-text">
+            <div class="role-title">Communications &amp; Fundraising</div>
+            <div class="role-subtitle">Social media, grant writing, campaigns</div>
+          </div>
+        </div>
+        <div class="role-item">
+          <div class="role-icon">🤝</div>
+          <div class="role-text">
+            <div class="role-title">Community Outreach Volunteers</div>
+            <div class="role-subtitle">Field support, food distribution, welfare visits</div>
+          </div>
+        </div>
+        <div class="role-item">
+          <div class="role-icon">💻</div>
+          <div class="role-text">
+            <div class="role-title">Digital &amp; Tech Volunteers</div>
+            <div class="role-subtitle">Web, design, data management</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="volunteer-form">
+        <div class="form-title">Express Your Interest</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="e.g. Tendai">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="e.g. Moyo">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" placeholder="+263 ...">
+        </div>
+        <div class="form-group">
+          <label>Area of Interest</label>
+          <select>
+            <option value="">Select a role...</option>
+            <option>Medical &amp; Healthcare</option>
+            <option>Education &amp; Tutoring</option>
+            <option>Communications &amp; Fundraising</option>
+            <option>Community Outreach</option>
+            <option>Digital &amp; Tech</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell us about yourself</label>
+          <textarea placeholder="Your skills, availability, and why you'd like to volunteer with ZFFI..."></textarea>
+        </div>
+        <a href="mailto:info@zffi.org" class="btn-primary" style="display:block;text-align:center;margin-top:0.5rem;">Submit Expression of Interest</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate" id="donate">
+  <div class="donate-header">
+    <div class="section-eyebrow">Make a difference</div>
+    <h2 class="section-title">Support <em>ZFFI</em></h2>
+    <p>Your generosity directly funds nutritious meals, school supplies, healthcare visits, and livelihood training for Zimbabwe's most vulnerable families. Every contribution transforms lives.</p>
+  </div>
+
+  <div class="donate-methods">
+
+    <!-- INTERNATIONAL ONLINE -->
+    <div class="method-group">
+      <div class="method-group-title">International Online</div>
+      <div class="payment-cards">
+
+        <a class="pay-card" href="https://www.paypal.com/donate" target="_blank" rel="noopener" title="Donate via PayPal">
+          <div class="pay-logo">
+            <svg viewBox="0 0 46 26" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="26" rx="4" fill="#003087"/>
+              <text x="5" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="11" fill="#009cde">Pay</text>
+              <text x="22" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="11" fill="#ffffff">Pal</text>
+            </svg>
+          </div>
+          <span class="pay-name">PayPal</span>
+        </a>
+
+        <a class="pay-card" href="mailto:info@zffi.org?subject=Donation via Mastercard" title="Donate via Mastercard">
+          <div class="pay-logo">
+            <svg viewBox="0 0 46 26" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="26" rx="4" fill="#252525"/>
+              <circle cx="17" cy="13" r="8" fill="#EB001B"/>
+              <circle cx="29" cy="13" r="8" fill="#F79E1B"/>
+              <path d="M23 7.2a8 8 0 0 1 0 11.6A8 8 0 0 1 23 7.2z" fill="#FF5F00"/>
+            </svg>
+          </div>
+          <span class="pay-name">Mastercard</span>
+        </a>
+
+        <a class="pay-card" href="mailto:info@zffi.org?subject=Donation via Visa" title="Donate via Visa Card">
+          <div class="pay-logo">
+            <svg viewBox="0 0 46 26" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="26" rx="4" fill="#1A1F71"/>
+              <text x="7" y="19" font-family="Arial,sans-serif" font-weight="bold" font-size="14" fill="#FFFFFF" letter-spacing="1">VISA</text>
+            </svg>
+          </div>
+          <span class="pay-name">Visa Card</span>
+        </a>
+
+        <a class="pay-card" href="mailto:info@zffi.org?subject=International Bank Transfer Donation" title="International Bank Transfer">
+          <div class="pay-logo">
+            <svg viewBox="0 0 46 26" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="26" rx="4" fill="#1A3A2A"/>
+              <rect x="6" y="14" width="34" height="3" rx="1" fill="#C4973A"/>
+              <rect x="6" y="9" width="34" height="2" rx="1" fill="#C4973A" opacity="0.5"/>
+              <polygon points="23,4 6,10 40,10" fill="#C4973A" opacity="0.8"/>
+            </svg>
+          </div>
+          <span class="pay-name">Bank Transfer</span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ZIMBABWE MOBILE MONEY -->
+    <div class="method-group">
+      <div class="method-group-title">Zimbabwe Mobile Money</div>
+      <div class="payment-cards">
+
+        <a class="pay-card" href="https://www.ecocash.co.zw" target="_blank" rel="noopener" title="Donate via EcoCash">
+          <div class="pay-logo">
+            <svg viewBox="0 0 46 26" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="26" rx="4" fill="#4CAF50"/>
+              <text x="4" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="9.5" fill="#ffffff">Eco</text>
+              <text x="22" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="9.5" fill="#FFEB3B">Cash</text>
+            </svg>
+          </div>
+          <span class="pay-name">EcoCash</span>
+        </a>
+
+        <a class="pay-card" href="https://www.netone.co.zw/onemoney" target="_blank" rel="noopener" title="Donate via OneMoney">
+          <div class="pay-logo">
+            <svg viewBox="0 0 46 26" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="26" rx="4" fill="#00BCD4"/>
+              <text x="4" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#ffffff">One</text>
+              <text x="22" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#ffffff">Money</text>
+            </svg>
+          </div>
+          <span class="pay-name">OneMoney</span>
+        </a>
+
+        <a class="pay-card" href="mailto:info@zffi.org?subject=Donation via Telecash" title="Donate via Telecash">
+          <div class="pay-logo">
+            <svg viewBox="0 0 46 26" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="26" rx="4" fill="#9C27B0"/>
+              <text x="3" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="8.5" fill="#ffffff">Tele</text>
+              <text x="22" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="8.5" fill="#ffffff">Cash</text>
+            </svg>
+          </div>
+          <span class="pay-name">Telecash</span>
+        </a>
+
+        <a class="pay-card" href="https://www.innbucks.co.zw" target="_blank" rel="noopener" title="Donate via InnBucks">
+          <div class="pay-logo">
+            <svg viewBox="0 0 46 26" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="26" rx="4" fill="#D32F2F"/>
+              <text x="3" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="8" fill="#ffffff">Inn</text>
+              <text x="18" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="8" fill="#FFEB3B">Bucks</text>
+            </svg>
+          </div>
+          <span class="pay-name">InnBucks</span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- REMITTANCE & TRANSFER -->
+    <div class="method-group">
+      <div class="method-group-title">Remittance &amp; Transfer</div>
+      <div class="payment-cards">
+
+        <a class="pay-card" href="https://www.mukuru.com" target="_blank" rel="noopener" title="Donate via Mukuru">
+          <div class="pay-logo">
+            <svg viewBox="0 0 46 26" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="26" rx="4" fill="#FF6600"/>
+              <text x="5" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="10" fill="#ffffff">Mukuru</text>
+            </svg>
+          </div>
+          <span class="pay-name">Mukuru</span>
+        </a>
+
+        <a class="pay-card" href="https://www.westernunion.com/us/en/send-money/app/start" target="_blank" rel="noopener" title="Donate via Western Union">
+          <div class="pay-logo">
+            <svg viewBox="0 0 46 26" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="26" rx="4" fill="#FDDA24"/>
+              <text x="4" y="13" font-family="Arial,sans-serif" font-weight="bold" font-size="6.5" fill="#000000">WESTERN</text>
+              <text x="6" y="21" font-family="Arial,sans-serif" font-weight="bold" font-size="6.5" fill="#000000">UNION</text>
+            </svg>
+          </div>
+          <span class="pay-name">Western Union</span>
+        </a>
+
+        <a class="pay-card" href="https://www.mamamoney.co.za" target="_blank" rel="noopener" title="Send via Mama Money">
+          <div class="pay-logo">
+            <svg viewBox="0 0 46 26" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="26" rx="4" fill="#E91E8C"/>
+              <text x="3" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="7.5" fill="#ffffff">Mama</text>
+              <text x="23" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="7.5" fill="#ffffff">Money</text>
+            </svg>
+          </div>
+          <span class="pay-name">Mama Money</span>
+        </a>
+
+        <a class="pay-card" href="mailto:info@zffi.org?subject=SWIFT Bank Transfer Donation" title="SWIFT / BancABC Transfer">
+          <div class="pay-logo">
+            <svg viewBox="0 0 46 26" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="26" rx="4" fill="#1A3A2A"/>
+              <text x="5" y="13" font-family="Arial,sans-serif" font-weight="bold" font-size="6" fill="#C4973A">BancABC</text>
+              <text x="8" y="21" font-family="Arial,sans-serif" font-size="5.5" fill="rgba(255,255,255,0.6)">SWIFT Transfer</text>
+            </svg>
+          </div>
+          <span class="pay-name">BancABC / SWIFT</span>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="donate-bank">
+    <div class="donate-bank-title">Bank Transfer Details — BancABC</div>
+    <div class="bank-grid">
+      <div class="bank-cell">
+        <div class="bank-cell-label">Bank</div>
+        <div class="bank-cell-value">BancABC Zimbabwe</div>
+      </div>
+      <div class="bank-cell">
+        <div class="bank-cell-label">SWIFT Code</div>
+        <div class="bank-cell-value">FMBZZWHX</div>
+      </div>
+      <div class="bank-cell">
+        <div class="bank-cell-label">Beneficiary</div>
+        <div class="bank-cell-value">ZFFI</div>
+      </div>
+      <div class="bank-cell">
+        <div class="bank-cell-label">Country</div>
+        <div class="bank-cell-value">Zimbabwe</div>
+      </div>
+    </div>
+    <p class="donate-contact">
+      For full account numbers, PayPal address, EcoCash number, or Mukuru/Western Union details, contact us directly at
+      <a href="mailto:info@zffi.org">info@zffi.org</a> or via our social media channels.
+      ZFFI also welcomes in-kind donations and partnership support.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">
+      <img src="logo.jpg" alt="ZFFI Logo" style="height:56px;width:auto;mix-blend-mode:lighten;filter:brightness(1.15);">
+      <div style="display:flex;flex-direction:column;gap:0.2rem;border-left:1px solid rgba(196,151,58,0.35);padding-left:0.75rem;">
+        <span style="font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:600;color:var(--gold-light);letter-spacing:0.22em;text-transform:uppercase;">Zimbabwe</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:0.6rem;font-weight:400;color:rgba(255,255,255,0.65);letter-spacing:0.16em;text-transform:uppercase;">Future Foundation</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:0.6rem;font-weight:400;color:rgba(255,255,255,0.65);letter-spacing:0.16em;text-transform:uppercase;">International</span>
+      </div>
+    </div>
+    <p class="footer-tagline">Zimbabwe Future Foundation International — Empowering and channelising youth power for nation building since 2018.</p>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/zffiafrica" class="social-link" target="_blank" rel="noopener">f</a>
+      <a href="https://x.com/zffiyouth_org" class="social-link" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://www.instagram.com/zffiyouthorg/" class="social-link" target="_blank" rel="noopener">ig</a>
+      <a href="https://www.linkedin.com/company/zimbabwe-future-foundation-international-zffi" class="social-link" target="_blank" rel="noopener">in</a>
+    </div>
+  </div>
+  <div class="footer-col">
+    <h4>Organisation</h4>
+    <ul>
+      <li><a href="#about">About ZFFI</a></li>
+      <li><a href="#pillars">Our Pillars</a></li>
+      <li><a href="#programs">Programmes</a></li>
+      <li><a href="#impact">Our Impact</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Get Involved</h4>
+    <ul>
+      <li><a href="#donate">Donate</a></li>
+      <li><a href="#partners">Partner With Us</a></li>
+      <li><a href="#volunteer">Volunteer</a></li>
+      <li><a href="mailto:info@zffi.org">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2026 Zimbabwe Future Foundation International (ZFFI). All rights reserved.</span>
+  <span>Empowering Zimbabwe's Future</span>
+</div>
+
+<script>
+(function(){
+  const items = Array.from(document.querySelectorAll('.gallery-item'));
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCat = document.getElementById('lbCat');
+  const lbCaption = document.getElementById('lbCaption');
+  const lbCounter = document.getElementById('lbCounter');
+  const lbClose = document.getElementById('lbClose');
+  const lbPrev = document.getElementById('lbPrev');
+  const lbNext = document.getElementById('lbNext');
+  let visible = items.slice();
+  let current = 0;
+
+  function getVisible() {
+    return items.filter(i => i.style.display !== 'none');
+  }
+
+  function openLightbox(idx) {
+    visible = getVisible();
+    current = idx;
+    updateLightbox();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function updateLightbox() {
+    const item = visible[current];
+    lbImg.src = item.querySelector('img').src;
+    lbImg.alt = item.querySelector('img').alt;
+    lbCat.textContent = item.dataset.cat ? item.dataset.cat.charAt(0).toUpperCase() + item.dataset.cat.slice(1) : '';
+    lbCaption.textContent = item.dataset.caption || '';
+    lbCounter.textContent = (current + 1) + ' / ' + visible.length;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  items.forEach((item) => {
+    item.addEventListener('click', () => {
+      visible = getVisible();
+      const idx = visible.indexOf(item);
+      openLightbox(idx >= 0 ? idx : 0);
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+  lbNext.addEventListener('click', () => {
+    current = (current + 1) % visible.length;
+    updateLightbox();
+  });
+
+  lbPrev.addEventListener('click', () => {
+    current = (current - 1 + visible.length) % visible.length;
+    updateLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') { current = (current + 1) % visible.length; updateLightbox(); }
+    if (e.key === 'ArrowLeft') { current = (current - 1 + visible.length) % visible.length; updateLightbox(); }
+  });
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      items.forEach(item => {
+        if (filter === 'all' || item.dataset.cat === filter) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
